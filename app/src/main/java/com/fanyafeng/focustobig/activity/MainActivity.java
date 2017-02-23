@@ -1,6 +1,7 @@
 package com.fanyafeng.focustobig.activity;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 
 import com.fanyafeng.focustobig.R;
@@ -98,21 +102,40 @@ public class MainActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.btnGetFocus:
-                toBig(viewTest);
+                toBig(findViewById(R.id.viewTest3));
                 break;
             case R.id.btnLoseFocus:
                 toNormal(viewTest);
+                break;
+            case R.id.btnVideo:
+                startActivity(new Intent(this,VideoActivity.class));
                 break;
         }
     }
 
     private void toBig(View view) {
-        ObjectAnimator objectAnimatorY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.2f);
+        ObjectAnimator objectAnimatorY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 2f);
         objectAnimatorY.setDuration(200);
         objectAnimatorY.start();
-        ObjectAnimator objectAnimatorX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.2f);
+        ObjectAnimator objectAnimatorX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 2f);
         objectAnimatorX.setDuration(200);
         objectAnimatorX.start();
+
+//        Animation scaleAnimation = new ScaleAnimation(0.0f,2.0f,0.0f,2.0f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+//        scaleAnimation.setDuration(500);//设置动画持续时间为500毫秒
+//        scaleAnimation.setFillAfter(true);//如果fillAfter的值为true,则动画执行后，控件将停留在执行结束的状态
+//        scaleAnimation.setFillBefore(false);//如果fillBefore的值为true，则动画执行后，控件将回到动画执行之前的状态
+//        scaleAnimation.setRepeatCount(3);//设置动画循环次数
+//        scaleAnimation.setRepeatMode(Animation.REVERSE);
+//        scaleAnimation.setStartOffset(0);
+//        scaleAnimation.setInterpolator(this, android.R.anim.decelerate_interpolator);//设置动画插入器
+//        view.clearAnimation();
+//        view.startAnimation(scaleAnimation);
+
+//        Animation scaleanim = AnimationUtils.loadAnimation(this, R.anim.scaleanim);
+//        view.startAnimation(scaleanim);
+
+
     }
 
     private void toNormal(View view) {
